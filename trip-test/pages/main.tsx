@@ -51,7 +51,7 @@ const Main = () => {
 export default Main
 
 const ContainerBox = styled.div`
-  padding-top: 50px;
+  padding-top: 10px;
 `
 const Common_inner = styled.div`
   max-width: 720px;
