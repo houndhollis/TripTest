@@ -1,11 +1,12 @@
-import React from 'react'
 import styled from '@emotion/styled';
 import Image from 'next/image';
+import Layout from '../components/Layout';
 
 
 const Main = () => {
   return (
-    <ContainerBox>
+    <Layout>
+      <ContainerBox>
        <Common_inner>
          <Inner_header>
             <span>Trip Buddy</span>
@@ -45,6 +46,7 @@ const Main = () => {
          </Inner_tripCourse>
        </Common_inner>
     </ContainerBox>
+  </Layout> 
   );
 }
 
