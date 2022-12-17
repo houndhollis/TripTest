@@ -14,13 +14,16 @@ const Main = () => {
          </Inner_header>
          <Inner_category>
             <div>
-              <span>✈️ 항공권</span>
+              <span>✈️</span>
+              <span>항공권</span>
             </div>
             <div>
-              <span>🗺 여행코스</span>
+              <span>🗺</span>
+              <span>여행코스</span>
             </div>
             <div>
-              <span>💬 커뮤니티</span>
+              <span>💬</span>
+              <span>커뮤니티</span>
             </div>
          </Inner_category>
          <Inner_tripCourse>
@@ -80,7 +83,11 @@ const Inner_category = styled.div`
     & div {
       border-radius: 10px;
       background-color: #F4F7FF;
-      padding: 10px 17px;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
     }
     & span {
       color: #444444;
