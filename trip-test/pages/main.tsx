@@ -67,8 +67,9 @@ const Inner_header = styled.div`
   align-items: center;
   & span {
     color: #2864FF;
+    font-family: 'GmarketSans';
     font-size: 30px;
-    font-weight: 900;
+    font-weight: 700;
     letter-spacing: -0.3px;
   }
 `
@@ -84,7 +85,7 @@ const Inner_category = styled.div`
     & span {
       color: #444444;
       font-weight: 600;
-      font-size: 16px;
+      font-size: 13px;
     }
 `
 

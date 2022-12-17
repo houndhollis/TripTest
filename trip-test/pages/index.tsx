@@ -12,7 +12,7 @@ export default function Home() {
         </LoginTop>
         <LoginBottom>
           <div>
-            <button className='kakao'>카카오 로그인</button>
+            <button className='kakao'>카카오톡 로그인</button>
             <button className='face'>페이스북 로그인</button>
             <button className='naver'>네이버 로그인</button>
           </div>
@@ -41,12 +41,13 @@ const LoginTop = styled.div`
   justify-content: center;
   align-items: center;
   color: #fff;
+  font-family: GmarketSans;
   & h2 {
     font-size: 42px;
-    font-weight: 900;
+    font-weight: 700;
   }
   & span {
-    margin-top: 10px;
+    margin-top: 15px;
     font-weight: 500;
   }
 `
@@ -70,6 +71,7 @@ const LoginBottom = styled.div`
     }
     .kakao {
       background-color: #FDE03D;
+      color: black;
     }
     .face {
       background-color: #006DEA;
