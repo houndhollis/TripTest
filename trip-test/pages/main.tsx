@@ -10,7 +10,7 @@ const Main = () => {
        <Common_inner>
          <Inner_header>
             <span>Trip Buddy</span>
-            <Image src={'/hambuger.png'} width={30} height={30} alt='버거바'/>
+            <Image src={'/hambuger.png'} width={20} height={20} alt='버거바'/>
          </Inner_header>
          <Inner_category>
             <div>
@@ -53,7 +53,7 @@ const Main = () => {
 export default Main
 
 const ContainerBox = styled.div`
-  padding-top: 10px;
+  padding-top: 20px;
 `
 const Common_inner = styled.div`
   max-width: 720px;
@@ -64,10 +64,11 @@ const Common_inner = styled.div`
 const Inner_header = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   & span {
     color: #2864FF;
     font-size: 30px;
-    font-weight: 500;
+    font-weight: 900;
     letter-spacing: -0.3px;
   }
 `
@@ -76,8 +77,8 @@ const Inner_category = styled.div`
     margin-top: 30px;
     justify-content: space-around;
     & div {
-      border: 1px solid #EEEEEE;
       border-radius: 10px;
+      background-color: #F4F7FF;
       padding: 10px 17px;
     }
     & span {
@@ -89,6 +90,7 @@ const Inner_category = styled.div`
 
 const Inner_tripCourse = styled.div`
   & h3 {
+      padding: 0 20px;
       margin-top: 40px;
       color: #444;
   }
