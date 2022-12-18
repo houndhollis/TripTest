@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 
 
 const Main = () => {
+  
   return (
     <Layout>
       <ContainerBox>

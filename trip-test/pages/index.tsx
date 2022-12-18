@@ -1,13 +1,37 @@
 import Layout from '../components/Layout'
 import styled from '@emotion/styled'
 import Link from 'next/link'
+import { useRouter } from 'next/router';
+import { auth } from '../firebase';
+import { GoogleAuthProvider,signInWithPopup } from 'firebase/auth';
 
 export default function Home() {
-
-function kakaoLogin(){
-  window.Kakao.Auth.authorize({
-    redirectUri: 'http://localhost:3000/kakao', 
-  })
+  const router = useRouter()
+  function kakaoLogin(){
+    const redirectUri = `${location.origin}/main`;
+    window.Kakao.Auth.authorize({
+      redirectUri,
+      
+    });
+    const search = new URLSearchParams(location.search)
+    const code = search.get("code");
+    if(!code) {
+      return(
+        <Link href={'/'}></Link>
+        )
+      }
+    }
+    
+    function googleLogin (){
+      const provider = new GoogleAuthProvider(); // provider를 구글로 설정
+      signInWithPopup(auth, provider) // popup을 이용한 signup
+      .then((data) => {
+        console.log(data) // console로 들어온 데이터 표시
+        router.push('/main')
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 }
 
   return (
@@ -21,7 +45,7 @@ function kakaoLogin(){
           <div>
             <button className='kakao' onClick={kakaoLogin}>카카오톡 로그인</button>
             <button className='face'>페이스북 로그인</button>
-            <button className='naver'>네이버 로그인</button>
+            <button className='naver' onClick={googleLogin}>구글 로그인</button>
           </div>
           <div>
             <Link href={'/main'}><button className='test'>테스트 계정으로 로그인</button></Link>
@@ -85,8 +109,8 @@ const LoginBottom = styled.div`
       color: #fff;
     }
     .naver {
-      background-color: #00CB31;
-      color: #fff;
+      background-color: #ff7171;
+      color: #ffffff;
     }
     .test {
       background-color:#fff;
