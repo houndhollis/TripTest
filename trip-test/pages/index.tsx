@@ -3,6 +3,13 @@ import styled from '@emotion/styled'
 import Link from 'next/link'
 
 export default function Home() {
+
+function kakaoLogin(){
+  window.Kakao.Auth.authorize({
+    redirectUri: 'http://localhost:3000/kakao', 
+  })
+}
+
   return (
     <Layout>
       <LoginContainer>
@@ -12,7 +19,7 @@ export default function Home() {
         </LoginTop>
         <LoginBottom>
           <div>
-            <button className='kakao'>카카오톡 로그인</button>
+            <button className='kakao' onClick={kakaoLogin}>카카오톡 로그인</button>
             <button className='face'>페이스북 로그인</button>
             <button className='naver'>네이버 로그인</button>
           </div>
