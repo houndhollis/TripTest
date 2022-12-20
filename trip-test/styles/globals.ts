@@ -36,4 +36,7 @@ export const global = css`
 a {
     text-decoration: none;
 }
+ul , li {
+    list-style: none;
+}
 `;
