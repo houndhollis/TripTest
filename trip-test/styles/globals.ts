@@ -35,6 +35,7 @@ export const global = css`
 }
 a {
     text-decoration: none;
+    color: inherit;
 }
 ul , li {
     list-style: none;

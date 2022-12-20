@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import styled from '@emotion/styled'
+import {useRouter} from 'next/router'
+
 
 interface DetailItem {
     content:string,
@@ -11,23 +13,25 @@ interface DetailItem {
 }
 
 const CommuDetail = ({ props }: { props: DetailItem }) => {
-
+const router = useRouter()
     return (
-        <Profile_Container>
-          <Profile_Top>
-            <Image src={'/profile.png'} width={38} height={38} alt='profile'/>
-            <div>
+        // <Link href={`/community/${props.id}`}>
+            <Profile_Container onClick={()=>router.push(`/community/${props.id}`)}>
+            <Profile_Top>
+                <Image src={'/profile.png'} width={38} height={38} alt='profile'/>
                 <div>
-                    <span className='user'>원쿠라짱</span>
-                    <span>{props.country}</span>
+                    <div>
+                        <span className='user'>원쿠라짱</span>
+                        <span>{props.country}</span>
+                    </div>
+                    <span>{props.date}</span>
                 </div>
-                <span>{props.date}</span>
-            </div>
-          </Profile_Top>
-          <Profile_Bottom>
-            <span>{props.content}</span>
-          </Profile_Bottom>
-        </Profile_Container>
+            </Profile_Top>
+            <Profile_Bottom>
+                <span>{props.content}</span>
+            </Profile_Bottom>
+            </Profile_Container>
+        // </Link>
     )
 }
 
