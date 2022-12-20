@@ -1,26 +1,14 @@
 import styled from "@emotion/styled"
-import { useState } from "react"
 import { useRouter } from "next/router"
-import { auth } from '../firebase'; 
-import Image from "next/image";
+import Header from "../components/Header";
+
 
 const Community = () => {
     const router = useRouter()
-    const [isOpen,setIsOpen] = useState(false)
-    const Singout = () => {
-      auth.signOut();
-      router.push('/')
-    }
 
     return (
         <Container>
-            <Inner_Container>
-                <span onClick={()=>router.push('/main')}>Trip Buddy</span>
-                <Image onClick={()=>setIsOpen(!isOpen)} src={'/hambuger.png'} width={20} height={20} alt='버거바'/>
-                <ul className={isOpen? "active" : 'close'}>
-                    <li onClick={Singout}>로그아웃</li>
-                </ul>
-            </Inner_Container>
+            <Header/>
             <Seletion_Container>
                 <h3>코뮤니티</h3>
                 <div>
@@ -34,7 +22,7 @@ const Community = () => {
                             <option>죽순</option>
                         </select>
                     </div>
-                    <button>글 쓰기</button>
+                    <button onClick={() => router.push('/commuask')}>글 쓰기</button>
                 </div>
             </Seletion_Container>
         </Container>
@@ -116,7 +104,6 @@ const Seletion_Container = styled.div`
             border-radius: 100%;
             border: none;
             background-color: #EFEFEF;
-
         }
     }
 `
