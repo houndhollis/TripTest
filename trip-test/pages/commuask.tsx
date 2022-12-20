@@ -1,8 +1,42 @@
 import Header from "../components/Header"
 import styled from "@emotion/styled"
 import Layout from "../components/Layout"
+import React, { useState } from "react"
+import uuid from "react-uuid"
+import { db } from "../firebase"
+import { collection , addDoc } from "firebase/firestore"
+import { useRouter } from "next/router"
+import moment from 'moment';
+
+// interface Value {
+//     contry:string
+// }
 
 const CommuAsk = () => {
+
+const router = useRouter()
+
+const [country ,setCountry] = useState('# 일본')
+const [title,setTitle] = useState('')
+const [content , setContent] = useState('')
+
+const SubmitHandler = async (e:React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault
+    try {
+        const res = await addDoc(collection(db,'CommuPost'),{
+            id:uuid(),
+            country:country,
+            title:title,
+            content:content,
+            day:moment().format('hh:mm:ss'),
+            date:new Date().toLocaleDateString()
+        })
+        router.push('/community')
+    } catch (e) {
+        console.log(e)
+    }
+}
+
     return (
         <Layout>
             <Container>
@@ -10,14 +44,15 @@ const CommuAsk = () => {
                 <AskContainer>
                     <h3>글쓰기</h3>
                     <div>
-                        <select>
+                        <select onChange={(e)=>setCountry(e.target.value)}>
                             <option># 일본</option>
                             <option># 한국</option>
                         </select>
-                        <input/>
-                        <textarea/>
+                        <input onChange={(e)=>setTitle(e.target.value)}/>
+                        <textarea onChange={(e)=>setContent(e.target.value)}/>
                     </div>
                 </AskContainer>
+                <button onClick={SubmitHandler}>등록하기</button>
             </Container>
         </Layout>
     )
@@ -39,12 +74,12 @@ const AskContainer = styled.div`
         gap: 20px;
         margin-top: 10px;
         & select , input , textarea {
-            color: #2864FF;
             background-color: #EFEFEF;
             border: none;
             border-radius: 10px;
         }
         & select {
+            color: #2864FF;
             width: 90px;
             margin-right: 10px;
             padding: 3px 15px;
@@ -55,6 +90,8 @@ const AskContainer = styled.div`
         }
         & textarea {
             height: 500px;
+            resize: none;
+            padding: 10px;
         }
     }
 `

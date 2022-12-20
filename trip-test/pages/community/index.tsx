@@ -1,10 +1,31 @@
 import styled from "@emotion/styled"
 import { useRouter } from "next/router"
-import Header from "../components/Header";
+import Header from "../../components/Header";
+import { collection ,getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
+import { useEffect, useState } from "react";
+import CommuDetail from "../../components/Commu/commuDetail";
+
 
 
 const Community = () => {
+    const usersCollectionRef = collection(db,'CommuPost')
     const router = useRouter()
+    const [Composts,setComposts] = useState<any>([])
+    
+
+    useEffect(()=>{
+      const getList = async() => {
+          const data = await getDocs(usersCollectionRef)
+
+          const newData = data.docs.map((doc) => ({ ...doc.data() }));
+          // new Date(2022.12.21) -> + 1231231244 -> number
+          setComposts(newData.sort((a, b):number=>{
+              return +new Date(b.date) - +new Date(a.date);
+          }))
+      }
+      getList()
+    },[])
 
     return (
         <Container>
@@ -25,6 +46,15 @@ const Community = () => {
                     <button onClick={() => router.push('/commuask')}>글 쓰기</button>
                 </div>
             </Seletion_Container>
+            <ListContainer>
+            리스트
+            <div>
+                {Composts && Composts.map((it:any)=>(
+                    <CommuDetail key={it.id} props={it}/>
+                ))}
+            </div>
+              
+            </ListContainer>
         </Container>
     )
 }
@@ -106,4 +136,8 @@ const Seletion_Container = styled.div`
             background-color: #EFEFEF;
         }
     }
+`
+
+const ListContainer = styled.div`
+    
 `

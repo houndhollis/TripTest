@@ -12,7 +12,6 @@ declare global { // Kakao 함수를 전역에서 사용할 수 있도록 선언
 export default function App({ Component, pageProps }: AppProps) {
   function kakaoInit () {
     window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
-    console.log(window.Kakao.isInitialized());
   }
   
   return (
